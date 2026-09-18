@@ -9,15 +9,12 @@ def is_ip(domain):
     except ValueError:
         return 0
 
-
 def extract_features(url):
     try:
         parsed = urllib.parse.urlparse(url)
-
         domain = parsed.netloc.lower()
         path = parsed.path.lower()
         query = parsed.query.lower()
-
         suspicious_words = [
             "login",
             "verify",
@@ -53,10 +50,7 @@ def extract_features(url):
             ),
             len(path),
             len(re.findall(r'[^A-Za-z0-9]', url))
-
         ]
-
         return features
-
     except Exception:
         return [0] * 17
